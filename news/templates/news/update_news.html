@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование новости :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated  %}
+<form action="{% url 'update_news' pk=object.pk%}" method="post">
+    <h1>Редактирование новости</h1>
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Готово</button>
+</form>
+{% endif %}
+{% endblock %}
